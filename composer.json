@@ -1,0 +1,26 @@
+{
+    "name": "callmeaf/media",
+    "description": "Manage all media in project",
+    "type": "library",
+    "require": {
+        "spatie/laravel-medialibrary": "*"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Callmeaf\\Media\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alikhoshkar",
+            "email": "alikhoshkar2000@gmail.com"
+        }
+    ],
+    "scripts": {
+        "post-package-install": [
+            "php artisan vendor:publish --provider=\"Spatie\\MediaLibrary\\MediaLibraryServiceProvider\" --tag=\"medialibrary-config\""
+        ]
+    },
+    "minimum-stability": "dev"
+}
