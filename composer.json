@@ -3,6 +3,7 @@
     "description": "Manage all media in project",
     "type": "library",
     "require": {
+        "callmeaf/base": "dev-master",
         "spatie/laravel-medialibrary": "*"
     },
     "license": "MIT",
@@ -18,7 +19,7 @@
         }
     ],
     "scripts": {
-        "post-package-install": [
+        "post-update-cmd": [
             "php artisan vendor:publish --provider=\"Spatie\\MediaLibrary\\MediaLibraryServiceProvider\" --tag=\"medialibrary-config\""
         ]
     },
