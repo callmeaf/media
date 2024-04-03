@@ -18,10 +18,5 @@
             "email": "alikhoshkar2000@gmail.com"
         }
     ],
-    "scripts": {
-        "post-update-cmd": [
-            "php artisan vendor:publish --provider=\"Spatie\\MediaLibrary\\MediaLibraryServiceProvider\" --tag=\"medialibrary-config\""
-        ]
-    },
     "minimum-stability": "dev"
 }
