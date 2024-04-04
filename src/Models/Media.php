@@ -6,8 +6,6 @@ use Callmeaf\Base\Contracts\HasEnum;
 use Callmeaf\Base\Traits\HasDate;
 use Callmeaf\Base\Traits\HasStatus;
 use Callmeaf\Base\Traits\HasType;
-use Callmeaf\Media\Enums\MediaCollection;
-use Callmeaf\Media\Enums\MediaDisk;
 use Callmeaf\Media\Enums\MediaStatus;
 use Callmeaf\Media\Enums\MediaType;
 use Illuminate\Database\Eloquent\SoftDeletes;
