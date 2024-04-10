@@ -22,11 +22,9 @@ class MediaDestroyRequest extends FormRequest
      */
     public function rules(): array
     {
-        return collect([
-            //
-        ])->map(
-            fn($values,$key) => validationManager($key,$values,config("callmeaf-media.validations.media_destroy")))
-            ->toArray();
+        return validationManager(rules: [
+
+        ],filters: config("callmeaf-media.validations.media_destroy"));
     }
 
 }
