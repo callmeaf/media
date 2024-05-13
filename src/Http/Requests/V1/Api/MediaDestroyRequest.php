@@ -11,8 +11,7 @@ class MediaDestroyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $media = $this->route('media');
-        return strval($media->model_id) === strval($this->user()->id);
+        return app(config('callmeaf-media.form_request_authorizers.media'))->destroy();
     }
 
     /**
@@ -24,7 +23,7 @@ class MediaDestroyRequest extends FormRequest
     {
         return validationManager(rules: [
 
-        ],filters: config("callmeaf-media.validations.media_destroy"));
+        ],filters: app(config("callmeaf-media.validations.media"))->destroy());
     }
 
 }

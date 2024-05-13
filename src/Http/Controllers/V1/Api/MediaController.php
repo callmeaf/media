@@ -6,7 +6,6 @@ use Callmeaf\Base\Http\Controllers\V1\Api\ApiController;
 use Callmeaf\Media\Http\Requests\V1\Api\MediaDestroyRequest;
 use Callmeaf\Media\Models\Media;
 use Callmeaf\Media\Services\V1\MediaService;
-use Illuminate\Support\Facades\Log;
 
 class MediaController extends ApiController
 {
@@ -14,6 +13,7 @@ class MediaController extends ApiController
 
     public function __construct()
     {
+        app(config('callmeaf-media.middlewares.media'))($this);
         $this->mediaService = app(config('callmeaf-media.service'));
     }
 

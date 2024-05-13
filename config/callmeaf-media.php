@@ -10,7 +10,7 @@ return [
         'type' => \Callmeaf\Media\Enums\MediaType::DEFAULT,
     ],
     'validations' => [
-        'media_destroy' => [],
+        'media' => \Callmeaf\Media\Utilities\V1\Media\Api\MediaFormRequestValidator::class,
     ],
     'resources' => [
 
@@ -18,9 +18,10 @@ return [
     'controllers' => [
         'media' => \Callmeaf\Media\Http\Controllers\V1\Api\MediaController::class,
     ],
+    'form_request_authorizers' => [
+        'media' => \Callmeaf\Media\Utilities\V1\Media\Api\MediaFormRequestAuthorizer::class,
+    ],
     'middlewares' => [
-        'global' => [
-            'auth:sanctum'
-        ],
+        'media' => \Callmeaf\Media\Utilities\V1\Media\Api\MediaControllerMiddleware::class,
     ],
 ];
