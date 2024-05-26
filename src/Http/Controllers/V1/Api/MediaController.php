@@ -3,6 +3,7 @@
 namespace Callmeaf\Media\Http\Controllers\V1\Api;
 
 use Callmeaf\Base\Http\Controllers\V1\Api\ApiController;
+use Callmeaf\Media\Events\MediaDeleted;
 use Callmeaf\Media\Http\Requests\V1\Api\MediaDestroyRequest;
 use Callmeaf\Media\Models\Media;
 use Callmeaf\Media\Services\V1\MediaService;
@@ -21,7 +22,9 @@ class MediaController extends ApiController
     public function destroy(MediaDestroyRequest $request,Media $media)
     {
         try {
-             $media = $this->mediaService->setModel($media)->delete()->getModel(asResource: true,attributes: [
+             $media = $this->mediaService->setModel($media)->delete(events: [
+                 MediaDeleted::class,
+             ])->getModel(asResource: true,attributes: [
                  'id',
                  'url',
                  'deleted_at'

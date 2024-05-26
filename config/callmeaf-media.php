@@ -9,6 +9,11 @@ return [
         'status' => \Callmeaf\Media\Enums\MediaStatus::ACTIVE,
         'type' => \Callmeaf\Media\Enums\MediaType::DEFAULT,
     ],
+    'events' => [
+        \Callmeaf\Media\Events\MediaDeleted::class => [
+            //
+        ],
+    ],
     'validations' => [
         'media' => \Callmeaf\Media\Utilities\V1\Media\Api\MediaFormRequestValidator::class,
     ],

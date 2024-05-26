@@ -2,6 +2,7 @@
 
 namespace Callmeaf\Media;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class CallmeafMediaServiceProvider extends ServiceProvider
@@ -16,11 +17,9 @@ class CallmeafMediaServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerConfig();
-
         $this->registerRoute();
-
         $this->registerMigration();
-
+        $this->registerEvents();
     }
 
     private function registerConfig()
@@ -44,4 +43,15 @@ class CallmeafMediaServiceProvider extends ServiceProvider
         ],self::DATABASE_GROUPS);
     }
 
+
+    private function registerEvents(): void
+    {
+        foreach (config('callmeaf-media.events') as $event => $listeners) {
+            Event::listen($event,function($event) use ($listeners) {
+                foreach($listeners as $listener) {
+                    app($listener)->handle($event);
+                }
+            });
+        }
+    }
 }
