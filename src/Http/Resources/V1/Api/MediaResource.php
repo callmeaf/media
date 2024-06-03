@@ -26,6 +26,11 @@ class MediaResource extends JsonResource
             'type' => fn() => $this->type,
             'type_text' => fn() => $this->typeText,
             'url' => fn() => $this->getUrl(),
+            'size' => fn() => $this->size,
+            'collection_name' => fn() => $this->collection_name,
+            'file_name' => fn() => $this->file_name,
+            'name' => fn() => $this->name,
+            'disk' => fn() => $this->disk,
             'created_at' => fn() => $this->created_at,
             'created_at_text' => fn() => $this->createdAtText,
         ],$this->only);
