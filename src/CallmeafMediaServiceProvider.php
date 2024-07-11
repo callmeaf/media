@@ -13,6 +13,9 @@ class CallmeafMediaServiceProvider extends ServiceProvider
     private const ROUTES_DIR = __DIR__ . '/../routes';
     private const DATABASE_DIR = __DIR__ . '/../database';
     private const DATABASE_GROUPS = 'callmeaf-media-migrations';
+    private const LANG_DIR = __DIR__ . '/../lang';
+    private const LANG_NAMESPACE = 'callmeaf-media';
+    private const LANG_GROUP = 'callmeaf-media-lang';
 
     public function boot()
     {
@@ -20,6 +23,7 @@ class CallmeafMediaServiceProvider extends ServiceProvider
         $this->registerRoute();
         $this->registerMigration();
         $this->registerEvents();
+        $this->registerLang();
     }
 
     private function registerConfig()
@@ -53,5 +57,18 @@ class CallmeafMediaServiceProvider extends ServiceProvider
                 }
             });
         }
+    }
+
+    private function registerLang(): void
+    {
+        $langPathFromVendor = lang_path('vendor/media/payment');
+        if(is_dir($langPathFromVendor)) {
+            $this->loadTranslationsFrom($langPathFromVendor,self::LANG_NAMESPACE);
+        } else {
+            $this->loadTranslationsFrom(self::LANG_DIR,self::LANG_NAMESPACE);
+        }
+        $this->publishes([
+            self::LANG_DIR => $langPathFromVendor,
+        ],self::LANG_GROUP);
     }
 }

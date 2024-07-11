@@ -6,4 +6,5 @@ enum MediaCollection: string
 {
     case DEFAULT = 'default';
     case IMAGE = 'image';
+    case DOCUMENTS = 'documents';
 }

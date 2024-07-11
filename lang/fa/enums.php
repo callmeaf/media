@@ -13,7 +13,7 @@ return [
     MediaType::class => [
         MediaType::PROFILE->name => 'پروفایل',
     ],
-    MediaDisk::class => -[
+    MediaDisk::class => [
         MediaDisk::UPLOADS->name => 'آپلود',
     ],
     MediaCollection::class => [
