@@ -1,6 +1,6 @@
 <?php
 
-namespace Callmeaf\Media\Utilities\V1\Media\Api;
+namespace Callmeaf\Media\Utilities\V1\Api\Media;
 
 use Callmeaf\Base\Utilities\V1\FormRequestValidator;
 

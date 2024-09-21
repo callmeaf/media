@@ -15,7 +15,7 @@ return [
         ],
     ],
     'validations' => [
-        'media' => \Callmeaf\Media\Utilities\V1\Media\Api\MediaFormRequestValidator::class,
+        'media' => \Callmeaf\Media\Utilities\V1\Api\Media\MediaFormRequestValidator::class,
     ],
     'resources' => [
 
@@ -24,9 +24,9 @@ return [
         'media' => \Callmeaf\Media\Http\Controllers\V1\Api\MediaController::class,
     ],
     'form_request_authorizers' => [
-        'media' => \Callmeaf\Media\Utilities\V1\Media\Api\MediaFormRequestAuthorizer::class,
+        'media' => \Callmeaf\Media\Utilities\V1\Api\Media\MediaFormRequestAuthorizer::class,
     ],
     'middlewares' => [
-        'media' => \Callmeaf\Media\Utilities\V1\Media\Api\MediaControllerMiddleware::class,
+        'media' => \Callmeaf\Media\Utilities\V1\Api\Media\MediaControllerMiddleware::class,
     ],
 ];
