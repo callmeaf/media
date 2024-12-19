@@ -9,4 +9,5 @@ enum MediaDisk: string
     case PRODUCTS = 'products';
     case VARIATIONS = 'variations';
     case PAYMENTS = 'payments';
+    case ADDRESSES = 'addresses';
 }
