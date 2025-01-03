@@ -4,13 +4,16 @@ namespace Callmeaf\Media\Utilities\V1\Api\Media;
 
 use Callmeaf\Base\Http\Controllers\BaseController;
 use Callmeaf\Base\Utilities\V1\ControllerMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 class MediaControllerMiddleware extends ControllerMiddleware
 {
-    public function __invoke(BaseController $controller): void
+    public function __invoke(): array
     {
-        $controller->middleware('auth:sanctum')->only([
-            'destroy'
-        ]);
+        return [
+            new Middleware(middleware: 'auth:sanctum',only: [
+                'destroy',
+            ])
+        ];
     }
 }

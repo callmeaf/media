@@ -14,10 +14,13 @@ class MediaController extends ApiController
 
     public function __construct()
     {
-        app(config('callmeaf-media.middlewares.media'))($this);
         $this->mediaService = app(config('callmeaf-media.service'));
     }
 
+    public static function middleware(): array
+    {
+        return app(config('callmeaf-media.middlewares.media'))();
+    }
 
     public function destroy(MediaDestroyRequest $request,Media $media)
     {
