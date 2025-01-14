@@ -9,6 +9,6 @@ class MediaFormRequestAuthorizer extends FormRequestAuthorizer
     public function destroy(): bool
     {
         $media = $this->request->route('media');
-        return strval($media->model_id) === strval($this->request->user()->id);
+        return strval($media->model_id) === strval(authUser(request: $this->request)->id);
     }
 }
