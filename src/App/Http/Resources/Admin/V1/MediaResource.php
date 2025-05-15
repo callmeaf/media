@@ -3,6 +3,7 @@
 namespace Callmeaf\Media\App\Http\Resources\Admin\V1;
 
 use Callmeaf\Media\App\Models\Media;
+use Callmeaf\User\App\Repo\Contracts\UserRepoInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,6 +19,10 @@ class MediaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        /**
+         * @var UserRepoInterface $userRepo
+         */
+        $userRepo = app(UserRepoInterface::class);
         return [
             'url' => $this->resource->getUrl(),
             'uuid' => $this->uuid,
@@ -32,6 +37,8 @@ class MediaResource extends JsonResource
             'updated_at_text' => $this->updatedAtText(),
             'deleted_at' => $this->deleted_at,
             'deleted_at_text' => $this->deletedAtText(),
+            'creator_identifier' => $this->creator_identifier,
+            'creator' => $userRepo->toResource($this->whenLoaded('creator')),
         ];
     }
 }
