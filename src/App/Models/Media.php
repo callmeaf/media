@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class Media extends BaseMediaModel
 {
@@ -29,11 +30,15 @@ class Media extends BaseMediaModel
 
          static::deleted(function (Model $model) {
              /**
+              * @var Media $model
+              */
+             /**
               * @var HasMedia $mediable
               */
              $mediable = $model->model;
              if($model->trashed() && !$mediable->keepDeletedMedia()) {
                  $model->forceDelete();
+                 Storage::disk($model->disk)->delete($model->getPath());
              }
          });
      }
