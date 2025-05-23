@@ -5,6 +5,7 @@ namespace Callmeaf\Media\App\Models;
 use App\Models\User;
 use Callmeaf\Base\App\Models\BaseMediaModel;
 use Callmeaf\Base\App\Traits\Model\HasDate;
+use Callmeaf\Media\App\Models\Contracts\HasMedia;
 use Callmeaf\User\App\Repo\Contracts\UserRepoInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +24,16 @@ class Media extends BaseMediaModel
                  $model->forceFill([
                      'creator_identifier' => $user->getRouteKey(),
                  ]);
+             }
+         });
+
+         static::deleted(function (Model $model) {
+             /**
+              * @var HasMedia $mediable
+              */
+             $mediable = $model->model;
+             if($model->trashed() && !$mediable->keepDeletedMedia()) {
+                 $model->forceDelete();
              }
          });
      }
