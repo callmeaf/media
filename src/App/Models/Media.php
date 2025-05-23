@@ -2,6 +2,7 @@
 
 namespace Callmeaf\Media\App\Models;
 
+use App\Models\User;
 use Callmeaf\Base\App\Models\BaseMediaModel;
 use Callmeaf\Base\App\Traits\Model\HasDate;
 use Callmeaf\User\App\Repo\Contracts\UserRepoInterface;
@@ -46,5 +47,16 @@ class Media extends BaseMediaModel
         $userRepo = app(UserRepoInterface::class);
 
         return $this->belongsTo($userRepo->getModel()::class,'creator_identifier',$userRepo->getModel()->getRouteKeyName());
+    }
+
+    /**
+     * @param ?User $user
+     * @return bool
+     */
+    public function canBeDelete($user = null): bool
+    {
+        $user ??= Auth::user();
+
+        return $user->getRouteKey() === $this->creator_identifier;
     }
 }

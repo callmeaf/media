@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Route;
     $middleware,
 ] = Base::getRouteConfigFromRepo(repo: \Callmeaf\Media\App\Repo\Contracts\MediaRepoInterface::class);
 
-//Route::apiResource($prefix, $controllers['medium'])->middleware($middleware);
+Route::apiResource($prefix, $controllers['medium'])->only([
+    'destroy'
+])->middleware($middleware);
 // Route::prefix($prefix)->as($as)->middleware($middleware)->controller($controllers['medium'])->group(function () {
     // Route::get('trashed/list', 'trashed');
     // Route::prefix('{medium}')->group(function () {

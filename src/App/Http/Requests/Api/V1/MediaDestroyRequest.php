@@ -2,6 +2,7 @@
 
 namespace Callmeaf\Media\App\Http\Requests\Api\V1;
 
+use Callmeaf\Media\App\Repo\Contracts\MediaRepoInterface;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MediaDestroyRequest extends FormRequest
@@ -11,7 +12,13 @@ class MediaDestroyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        /**
+         * @var MediaRepoInterface $mediaRepo
+         */
+        $mediaRepo = app(MediaRepoInterface::class);
+
+        $media = $mediaRepo->findById($this->route('medium'));
+        return $media->resource->canBeDelete(user: $this->user());
     }
 
     /**
