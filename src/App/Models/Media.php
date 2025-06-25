@@ -23,7 +23,7 @@ class Media extends BaseMediaModel
          static::creating(function(Model $model) {
              if($user = Auth::user()) {
                  $model->forceFill([
-                     'creator_identifier' => $user->getRouteKey(),
+                     'creator_identifier' => $user->identifier(),
                  ]);
              }
          });
@@ -73,6 +73,6 @@ class Media extends BaseMediaModel
     {
         $user ??= Auth::user();
 
-        return $user->getRouteKey() === $this->creator_identifier;
+        return $user->identifier() === $this->creator_identifier;
     }
 }
