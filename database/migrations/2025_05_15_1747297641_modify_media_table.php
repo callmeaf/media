@@ -23,7 +23,7 @@ return new class extends Migration
              */
             $userRepo = app(\Callmeaf\User\App\Repo\Contracts\UserRepoInterface::class);
             $table->string('creator_identifier')->nullable()->after('model_id');
-            $table->foreign('creator_identifier')->references($userRepo->getModel()->getRouteKeyName())->on($userRepo->getTable())->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign('creator_identifier')->references($userRepo->getModel()->identifierKey())->on($userRepo->getTable())->cascadeOnUpdate()->nullOnDelete();
 
             $table->softDeletes()->after('order_column');
         });

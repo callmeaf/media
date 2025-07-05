@@ -62,7 +62,7 @@ class Media extends BaseMediaModel
          */
         $userRepo = app(UserRepoInterface::class);
 
-        return $this->belongsTo($userRepo->getModel()::class,'creator_identifier',$userRepo->getModel()->getRouteKeyName());
+        return $this->belongsTo($userRepo->getModel()::class,'creator_identifier',$userRepo->getModel()->identifierKey());
     }
 
     /**
